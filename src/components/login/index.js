@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Button, Typography } from 'antd';
-import {signInWithPopup,FacebookAuthProvider} from 'firebase/auth';
+import {signInWithPopup,FacebookAuthProvider,GoogleAuthProvider} from 'firebase/auth';
 import {authentication} from '../../firebase/config';
 import { addDocument, generateKeywords } from '../../firebase/services';
 
@@ -31,6 +31,23 @@ export default function Login() {
             })
         }
     }
+
+    const handleGgLogin = async() => { //login with google
+        const provider = new GoogleAuthProvider();
+        const {_tokenResponse, user, providerId}= await signInWithPopup(authentication, provider);
+
+        if(_tokenResponse?.isNewUser){
+            await addDocument('users',{
+                displayName: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL,
+                uid: user.uid,
+                providerId: providerId,
+                keywords: generateKeywords(user.displayName)
+            })
+        }
+    }
+
   
     //component
     return (
@@ -38,7 +55,7 @@ export default function Login() {
             <Row justify='center' style={{height: 800}}>
                 <Col span={8}>
                     <Title style={TitleStyle}>Fun Chat</Title>
-                    <Button style={ButtonStyle}>
+                    <Button style={ButtonStyle} onClick={handleGgLogin}>
                         Login with Google
                     </Button>
                     <Button style={ButtonStyle} onClick={handleFbLogin}>
