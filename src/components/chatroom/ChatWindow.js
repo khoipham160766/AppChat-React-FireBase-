@@ -52,9 +52,13 @@ import useFirestore from "../../hooks/useFirestore";
         padding: 2px 2px 2px 0;
         border: 1px solid rbg(230,230,230);
         border-radius: 2px;
+        margin-bottom: 20px;
         .ant-form-item{
             flex: 1;
             margin-bottom: 0;
+        }
+        .ant-input{
+            border: 1px solid #C0C0C0;
         }
     `;
     const MessageListStyled=styled.div`
