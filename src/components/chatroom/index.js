@@ -8,7 +8,7 @@ export default function ChatRoom(){
     return (
             <div>
                 <Row>
-                    <Col span={6}>
+                    <Col span={6} className="test">
                         <Sidebar/>
                     </Col>
                     <Col span={18}>

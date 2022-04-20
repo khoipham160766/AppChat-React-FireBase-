@@ -25,7 +25,6 @@ const useFirestore = (collect,condition) => {
 //     },[collect,condition]);
 //     return documents;
 // }
-console.log({condition});
 React.useEffect(() => {
     let collectionRef = (collection(db, collect));
     if(condition){
