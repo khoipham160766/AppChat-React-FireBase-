@@ -30,7 +30,7 @@ export default function Login() {
                 keywords: generateKeywords(user.displayName)
             })
         }
-    }
+    };
 
     const handleGgLogin = async() => { //login with google
         const provider = new GoogleAuthProvider();
@@ -46,7 +46,7 @@ export default function Login() {
                 keywords: generateKeywords(user.displayName)
             })
         }
-    }
+    };
 
   
     //component
