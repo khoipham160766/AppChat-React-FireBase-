@@ -1,0 +1,7 @@
+#Instructions for using the app on visual studio
+
+1. Open the folder containing the app with visual studio.
+2. Open terminal in visual code, run command (npm install).
+3. At terminal, run command ( cd emulators ), and then run command (firebase emulators:start).
+4. Open another terminal, run command ( yarn start ).
+Complete !
