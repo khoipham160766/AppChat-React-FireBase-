@@ -33,24 +33,22 @@ export default function Message({text, displayName, createdAt, photoURL}){
     const [outputValue,setOutputValue]=useState(' ');
     const decryption = () =>{
 
-        // var encryptedBytes=aesjs.utils.hex.toBytes(text);
-        // var key=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-        // var aes=new aesjs.AES(key);
-        // var decryptedBytes= aes.decrypt(encryptedBytes);
-        // var decryptedText=aesjs.utils.utf8.fromBytes(decryptedBytes);
-        // console.log(decryptedText);
+        var key=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+        var encryptedBytes = aesjs.utils.hex.toBytes(text);
+        var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+        var decryptedBytes = aesCtr.decrypt(encryptedBytes);
+        var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
 
-        let split='';
-        const key=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-        const aes=new aesjs.AES(key);
-        let decryptedText='';
-        for(var i=0;i<text.length;i+=32){
-                split=text.slice(i,i+32);
-                const textAsBytes=aesjs.utils.hex.toBytes(split);
-                const decryptedBytes=aes.decrypt(textAsBytes);
-                decryptedText+=aesjs.utils.utf8.fromBytes(decryptedBytes);
-        }
-        console.log(decryptedText);
+        // let split='';
+        // const key=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+        // const aes=new aesjs.AES(key);
+        // let decryptedText='';
+        // for(var i=0;i<text.length;i+=32){
+        //         split=text.slice(i,i+32);
+        //         const textAsBytes=aesjs.utils.hex.toBytes(split);
+        //         const decryptedBytes=aes.decrypt(textAsBytes);
+        //         decryptedText+=aesjs.utils.utf8.fromBytes(decryptedBytes);
+        // }
         setOutputValue(decryptedText);
         //setOutputValue(text);
     }

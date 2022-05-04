@@ -77,21 +77,29 @@ export default function ChatWidow() {
     } } = useContext(AuthContext);
     //functions
     const handleInputChange = (e) => {
-        const text=e.target.value;
-        let split='';
-        const key=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-        const aes=new aesjs.AES(key);
-        let encryptedHex='';
-        for(var i=0;i<text.length;i+=16){
-                split=text.slice(i,i+16);
-                if(split.length<16){
-                    for(var q=split.length;q<16;q++)
-                        split+=' ';
-                }
-                const textAsBytes=aesjs.utils.utf8.toBytes(split);
-                const encryptedBytes=aes.encrypt(textAsBytes);
-                encryptedHex+=aesjs.utils.hex.fromBytes(encryptedBytes);
-        }
+        var key = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 ];
+        var text = e.target.value;
+        var textBytes = aesjs.utils.utf8.toBytes(text);
+        var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+        var encryptedBytes = aesCtr.encrypt(textBytes);
+        var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+        console.log(encryptedHex);
+
+        // const text=e.target.value;
+        // let split='';
+        // const key=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+        // const aes=new aesjs.AES(key);
+        // let encryptedHex='';
+        // for(var i=0;i<text.length;i+=16){
+        //         split=text.slice(i,i+16);
+        //         if(split.length<16){
+        //             for(var q=split.length;q<16;q++)
+        //                 split+=' ';
+        //         }
+        //         const textAsBytes=aesjs.utils.utf8.toBytes(split);
+        //         const encryptedBytes=aes.encrypt(textAsBytes);
+        //         encryptedHex+=aesjs.utils.hex.fromBytes(encryptedBytes);
+        // }
         setInputValue(encryptedHex);
         //setInputValue(e.target.value);
     }
@@ -114,7 +122,6 @@ export default function ChatWidow() {
         [selectedRoom.id]
       );
     const message = useFirestore('messages',condition);
-    console.log({message});
     // const selectedRoom =  React.useMemo(()=> rooms.find(room => room.id === selectedRoomId),[rooms,selectedRoomId]);
     return (
         <WrapperStyled>
