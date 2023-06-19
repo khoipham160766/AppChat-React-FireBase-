@@ -4,7 +4,6 @@ import React, { useState } from "react";
 
 const useFirestore = (collect,condition) => {
     const [documents, setDocuments] = useState([]);
-//    console.log({condition});
 //     React.useEffect(() => {
 //         let collectionRef = (collection(db, collect));
 //         if(condition){
@@ -35,7 +34,6 @@ React.useEffect(() => {
         collectionRef = query(collection(db,collect), where(condition.fieldName, condition.operator, condition.compareValue), orderBy("createdAt"));
     }
     const unsubcribe = onSnapshot(collectionRef,(snapshot)=>{
-        console.log({snapshot});
         const documents = snapshot.docs.map((doc) => ({
             ...doc.data(),
             id: doc.id,
@@ -44,7 +42,6 @@ React.useEffect(() => {
     })
     return unsubcribe;
 }, [collect,condition]);
-console.log({documents});
 return documents;
 }
 export default useFirestore;

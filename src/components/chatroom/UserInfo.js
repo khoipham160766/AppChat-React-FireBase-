@@ -26,7 +26,6 @@ export default function UserInfo() {
         photoURL
     }} = React.useContext(AuthContext);
     const data =React.useContext(AuthContext);
-    console.log({data});
     return (
         <div>
             <WrapperStyled>

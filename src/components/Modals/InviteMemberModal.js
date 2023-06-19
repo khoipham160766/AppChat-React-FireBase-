@@ -9,7 +9,6 @@ import { collection, query, where, getDocs, updateDoc, doc } from "firebase/fire
 function DebounceSelect({fetchOptions, debounceTimeout = 300,...props}){
     const [fetching, setFetching]=useState(false);
     const [options, setOptions]=useState([]);
-    console.log({options});
     const debounceFetcher = React.useMemo (()=>{
         const loadOptions = (value) => {
             setOptions([]);
@@ -46,7 +45,6 @@ function DebounceSelect({fetchOptions, debounceTimeout = 300,...props}){
 }
 
 async function fetchUserList(search, curMembers){
-    console.log({search});
     return  getDocs(query(collection(db,'users'),where('keywords', 'array-contains', search))).then((snapshot)=>{
         return snapshot.docs.map((doc)=> ({
             label: doc.data().displayName,
@@ -92,7 +90,6 @@ export default function InviteMemberModal() {
         form.resetFields();
         setIsInviteMemberVisible(false);
     }
-    console.log({value});
     return (
         <div>
             <Modal

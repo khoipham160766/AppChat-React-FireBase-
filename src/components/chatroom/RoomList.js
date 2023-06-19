@@ -32,7 +32,6 @@ import { AppContext } from "../../Context/AppProvider";
 export default function RoomList() {
     //variables
     const {rooms, setIsAddRoomVisible, setSelectedRoomId }=React.useContext(AppContext);
-    console.log({rooms});
     //function
     const handleAddRoom = () => {
         setIsAddRoomVisible(true);

@@ -61,7 +61,7 @@ export default function Login() {
                     <Button style={ButtonStyle} onClick={handleFbLogin}>
                         Login with Facebook
                     </Button>
-                    <h2 style={{textAlign: 'center', color: 'blue'}}>Developed By Khôi</h2>
+                    <h2 style={{textAlign: 'center', color: 'blue'}}>Developed By Nhóm 05</h2>
                 </Col>
             </Row>
         </div>

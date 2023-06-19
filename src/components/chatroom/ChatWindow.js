@@ -87,7 +87,7 @@ export default function ChatWidow() {
 
         // const text=e.target.value;
         // let split='';
-        // const key=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+        // const key=[97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112];
         // const aes=new aesjs.AES(key);
         // let encryptedHex='';
         // for(var i=0;i<text.length;i+=16){
